@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/25/2024 6:51:50 PM"
@@ -11,9 +11,1613 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionGUID="{EBBF6B4A-5359-4F94-AA83-069D205A95B3}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{C9CDBF7B-C900-4A07-B117-97BFF119AA5F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimCliente"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F75B0C13-2B04-48AD-948A-1CDE95240FEF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCliente"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimCliente\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input].Columns[NombreClienteDB]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreClienteDB"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDB]" />
+                    <inputColumn
+                      refId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input].Columns[IdClienteDM]"
+                      cachedDataType="i4"
+                      cachedName="IdClienteDM"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDM]" />
+                    <inputColumn
+                      refId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input].Columns[NombreClienteDM]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreClienteDM"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDM]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\Conditional Split.Outputs[Nuevo Registro]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Nuevo Registro"
+                  synchronousInputId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDM]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(IdClienteDM)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCliente\Conditional Split.Outputs[Registro Modificado]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Registro Modificado"
+                  synchronousInputId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">(#{Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDB]} != #{Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDM]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(NombreClienteDB != NombreClienteDM)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCliente\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCliente\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimCliente\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Data Conversion.Inputs[Data Conversion Input].Columns[NombreCliente]"
+                      cachedDataType="wstr"
+                      cachedLength="767"
+                      cachedName="NombreCliente"
+                      lineageId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Output].Columns[NombreCliente]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DimCliente\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Output].Columns[NombreCliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Output].Columns[NombreCliente]"
+                      name="NombreCliente"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimCliente\Nombre_Full.Outputs[Derived Column Output].Columns[NombreCliente]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DimCliente\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\Destino DimCliente"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino DimCliente"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimCliente"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCliente\Destino DimCliente.Connections[IDbConnection]"
+                  connectionManagerID="{68F3CFC2-4281-4BBE-B612-0C287FA5FAE0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.MuebleriaAlbarranBI1]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET].Columns[IdClienteDB]"
+                      cachedDataType="i4"
+                      cachedName="IdClienteDB"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[IdCliente]"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDB]" />
+                    <inputColumn
+                      refId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET].Columns[NombreClienteDB]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreClienteDB"
+                      externalMetadataColumnId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[NombreCliente]"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDB]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[IdCliente]"
+                      dataType="i4"
+                      name="IdCliente" />
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[NombreCliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="NombreCliente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\Destino DimCliente.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Destino DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Destino DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCliente\Destino DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Destino DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DimCliente\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Merge Join.Inputs[Merge Join Left Input].Columns[NombreCliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreCliente"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\DimCliente\Ordenar I.Outputs[Sort Output].Columns[NombreCliente]" />
+                    <inputColumn
+                      refId="Package\DimCliente\Merge Join.Inputs[Merge Join Left Input].Columns[IdCliente]"
+                      cachedDataType="i4"
+                      cachedName="IdCliente"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DimCliente\Ordenar I.Outputs[Sort Output].Columns[IdCliente]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DimCliente\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Merge Join.Inputs[Merge Join Right Input].Columns[IdCliente]"
+                      cachedDataType="i4"
+                      cachedName="IdCliente"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DimCliente\Ordena II.Outputs[Sort Output].Columns[IdCliente]" />
+                    <inputColumn
+                      refId="Package\DimCliente\Merge Join.Inputs[Merge Join Right Input].Columns[NombreCliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreCliente"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\DimCliente\Ordena II.Outputs[Sort Output].Columns[NombreCliente]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDM]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDM]"
+                      name="NombreClienteDM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimCliente\Merge Join.Inputs[Merge Join Right Input].Columns[NombreCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDB]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDB]"
+                      name="NombreClienteDB">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimCliente\Merge Join.Inputs[Merge Join Left Input].Columns[NombreCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDM]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDM]"
+                      name="IdClienteDM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimCliente\Merge Join.Inputs[Merge Join Right Input].Columns[IdCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDB]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDB]"
+                      name="IdClienteDB"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimCliente\Merge Join.Inputs[Merge Join Left Input].Columns[IdCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\Nombre_Full"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Nombre_Full"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimCliente\Nombre_Full.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Nombre_Full.Inputs[Derived Column Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\DimCliente\Nombre_Full.Inputs[Derived Column Input].Columns[appaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="appaterno"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[appaterno]" />
+                    <inputColumn
+                      refId="Package\DimCliente\Nombre_Full.Inputs[Derived Column Input].Columns[apmaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="apmaterno"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[apmaterno]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DimCliente\Nombre_Full.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Output].Columns[NombreCliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="767"
+                      lineageId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Output].Columns[NombreCliente]"
+                      name="NombreCliente"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[nombre]} + " " + #{Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[appaterno]} + " " + #{Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[apmaterno]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(nombre + " " + appaterno + " " + apmaterno)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DimCliente\Nombre_Full.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE DimCliente SET NombreCliente = ? WHERE IdCliente = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCliente\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{563C3AFF-03AA-470C-89C9-E34F1D2A23EC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.MuebleriaAlbarranBI]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input].Columns[NombreClienteDB]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreClienteDB"
+                      externalMetadataColumnId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[NombreClienteDB]" />
+                    <inputColumn
+                      refId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input].Columns[IdClienteDB]"
+                      cachedDataType="i4"
+                      cachedName="IdClienteDB"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DimCliente\Merge Join.Outputs[Merge Join Output].Columns[IdClienteDB]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimCliente\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCliente\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\Ordena II"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ordena II"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DimCliente\Ordena II.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Ordena II.Inputs[Sort Input].Columns[IdCliente]"
+                      cachedDataType="i4"
+                      cachedName="IdCliente"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[IdCliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimCliente\Ordena II.Inputs[Sort Input].Columns[NombreCliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreCliente"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[NombreCliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\Ordena II.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Ordena II.Outputs[Sort Output].Columns[IdCliente]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Ordena II.Outputs[Sort Output].Columns[IdCliente]"
+                      name="IdCliente"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[IdCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimCliente\Ordena II.Outputs[Sort Output].Columns[NombreCliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\Ordena II.Outputs[Sort Output].Columns[NombreCliente]"
+                      name="NombreCliente"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[NombreCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\Ordenar I"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ordenar I"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DimCliente\Ordenar I.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimCliente\Ordenar I.Inputs[Sort Input].Columns[NombreCliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreCliente"
+                      lineageId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Output].Columns[NombreCliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimCliente\Ordenar I.Inputs[Sort Input].Columns[IdCliente]"
+                      cachedDataType="i4"
+                      cachedName="IdCliente"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[IdCliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\Ordenar I.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\Ordenar I.Outputs[Sort Output].Columns[NombreCliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\Ordenar I.Outputs[Sort Output].Columns[NombreCliente]"
+                      name="NombreCliente"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimCliente\Data Conversion.Outputs[Data Conversion Output].Columns[NombreCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimCliente\Ordenar I.Outputs[Sort Output].Columns[IdCliente]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\Ordenar I.Outputs[Sort Output].Columns[IdCliente]"
+                      name="IdCliente"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[IdCliente]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\OrigenClienteDB"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenClienteDB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT cliente_id AS IdCliente, nombre, appaterno, apmaterno
+FROM     clientes</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."cargos"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCliente\OrigenClienteDB.Connections[IDbConnection]"
+                  connectionManagerID="{8742878F-6562-4B92-A5EB-10A0C4ECAF8E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Albarran1]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[IdCliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[IdCliente]"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[IdCliente]"
+                      name="IdCliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[appaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[appaterno]"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[appaterno]"
+                      name="appaterno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[apmaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[apmaterno]"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].Columns[apmaterno]"
+                      name="apmaterno"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[IdCliente]"
+                      dataType="i4"
+                      name="IdCliente" />
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="appaterno" />
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET].ExternalColumns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="apmaterno" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[IdCliente]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[IdCliente]"
+                      name="IdCliente" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[appaterno]"
+                      name="appaterno" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[apmaterno]"
+                      name="apmaterno" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimCliente\OrigenDimCliente"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenDimCliente"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        IdCliente, NombreCliente
+FROM            DimCliente</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimCliente\OrigenDimCliente.Connections[IDbConnection]"
+                  connectionManagerID="{68F3CFC2-4281-4BBE-B612-0C287FA5FAE0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.MuebleriaAlbarranBI1]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[IdCliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].ExternalColumns[IdCliente]"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[IdCliente]"
+                      name="IdCliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[NombreCliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].ExternalColumns[NombreCliente]"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].Columns[NombreCliente]"
+                      name="NombreCliente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].ExternalColumns[IdCliente]"
+                      dataType="i4"
+                      name="IdCliente" />
+                    <externalMetadataColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET].ExternalColumns[NombreCliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="NombreCliente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[IdCliente]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[IdCliente]"
+                      name="IdCliente" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[NombreCliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[NombreCliente]"
+                      name="NombreCliente" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimCliente.Paths[Data Conversion Output]"
+              endId="Package\DimCliente\Ordenar I.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\DimCliente\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DimCliente.Paths[Derived Column Output]"
+              endId="Package\DimCliente\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\DimCliente\Nombre_Full.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DimCliente.Paths[Merge Join Output]"
+              endId="Package\DimCliente\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\DimCliente\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\DimCliente.Paths[Nuevo Registro]"
+              endId="Package\DimCliente\Destino DimCliente.Inputs[Entrada de destino de ADO NET]"
+              name="Nuevo Registro"
+              startId="Package\DimCliente\Conditional Split.Outputs[Nuevo Registro]" />
+            <path
+              refId="Package\DimCliente.Paths[Registro Modificado]"
+              endId="Package\DimCliente\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Registro Modificado"
+              startId="Package\DimCliente\Conditional Split.Outputs[Registro Modificado]" />
+            <path
+              refId="Package\DimCliente.Paths[Salida de origen de ADO NET]"
+              endId="Package\DimCliente\Nombre_Full.Inputs[Derived Column Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\DimCliente\OrigenClienteDB.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\DimCliente.Paths[Salida de origen de ADO NET1]"
+              endId="Package\DimCliente\Ordena II.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\DimCliente\OrigenDimCliente.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\DimCliente.Paths[Sort Output]"
+              endId="Package\DimCliente\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\DimCliente\Ordenar I.Outputs[Sort Output]" />
+            <path
+              refId="Package\DimCliente.Paths[Sort Output1]"
+              endId="Package\DimCliente\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\DimCliente\Ordena II.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimTiempo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{FDAED32E-D294-42EB-A00D-6F5E3B5B8AC2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimTiempo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F8DE1D31-EE22-43D7-88FF-89D340146BC2}"
+      DTS:From="Package\DimCliente"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DimTiempo" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="130,42"
+          Id="Package\DimCliente"
+          TopLeft="185,62" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\DimTiempo"
+          TopLeft="439,61" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="315,82.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124,0"
+              Start="0,0"
+              End="116.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="116.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimCliente">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimCliente\OrigenClienteDB"
+          TopLeft="182,50" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\DimCliente\Nombre_Full"
+          TopLeft="187,140" />
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Salida de origen de ADO NET]"
+          TopLeft="258,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimCliente\Data Conversion"
+          TopLeft="185,236" />
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Derived Column Output]"
+          TopLeft="259.5,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="125,42"
+          Id="Package\DimCliente\Ordenar I"
+          TopLeft="196,328" />
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Data Conversion Output]"
+          TopLeft="260.75,278">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="161,42"
+          Id="Package\DimCliente\OrigenDimCliente"
+          TopLeft="453,49" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\DimCliente\Ordena II"
+          TopLeft="467,139" />
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Salida de origen de ADO NET1]"
+          TopLeft="531.5,91">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\DimCliente\Conditional Split"
+          TopLeft="352,509" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\DimCliente\Destino DimCliente"
+          TopLeft="233.75,641.25" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\DimCliente\OLE DB Command"
+          TopLeft="463.75,643.75" />
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Nuevo Registro]"
+          TopLeft="429.5,551">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-111.75,90.25"
+              Start="0,0"
+              End="-111.75,82.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.125"
+                    Point2="0,45.125"
+                    Point3="-4,45.125" />
+                  <mssgle:LineSegment
+                    End="-107.75,45.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-107.75,45.125"
+                    Point2="-111.75,45.125"
+                    Point3="-111.75,49.125" />
+                  <mssgle:LineSegment
+                    End="-111.75,82.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-89.95203125,50.125,68.1540625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Registro Modificado]"
+          TopLeft="454,551">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.7500000000001,92.75"
+              Start="0,0"
+              End="92.7500000000001,85.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.6685823754789" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.6685823754789"
+                    Point2="0,37.6685823754789"
+                    Point3="4,37.6685823754789" />
+                  <mssgle:LineSegment
+                    End="88.7500000000001,37.6685823754789" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.7500000000001,37.6685823754789"
+                    Point2="92.7500000000001,37.6685823754789"
+                    Point3="92.7500000000001,41.6685823754789" />
+                  <mssgle:LineSegment
+                    End="92.7500000000001,85.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.63296875000005,42.6685823754789,87.4840625,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\DimCliente\Merge Join"
+          TopLeft="351.25,402.5" />
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Sort Output]"
+          TopLeft="258.5,370">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157.75,32.5"
+              Start="0,0"
+              End="157.75,25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.25"
+                    Point2="0,16.25"
+                    Point3="4,16.25" />
+                  <mssgle:LineSegment
+                    End="153.75,16.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="153.75,16.25"
+                    Point2="157.75,16.25"
+                    Point3="157.75,20.25" />
+                  <mssgle:LineSegment
+                    End="157.75,25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Sort Output1]"
+          TopLeft="529.5,181">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-92.9166666666667,221.5"
+              Start="0,0"
+              End="-92.9166666666667,214">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,127.284194528875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,127.284194528875"
+                    Point2="0,131.284194528875"
+                    Point3="-4,131.284194528875" />
+                  <mssgle:LineSegment
+                    End="-88.9166666666667,131.284194528875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-88.9166666666667,131.284194528875"
+                    Point2="-92.9166666666667,131.284194528875"
+                    Point3="-92.9166666666667,135.284194528875" />
+                  <mssgle:LineSegment
+                    End="-92.9166666666667,214" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Merge Join Output]"
+          TopLeft="416.25,444.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.25,64.5"
+              Start="0,0"
+              End="13.25,57">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.25"
+                    Point2="0,32.25"
+                    Point3="4,32.25" />
+                  <mssgle:LineSegment
+                    End="9.25,32.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.25,32.25"
+                    Point2="13.25,32.25"
+                    Point3="13.25,36.25" />
+                  <mssgle:LineSegment
+                    End="13.25,57" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCliente\OrigenClienteDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCliente\OrigenDimCliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCliente\Destino DimCliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
