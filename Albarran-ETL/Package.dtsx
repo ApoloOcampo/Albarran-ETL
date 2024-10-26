@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{016069C4-C5D9-4BCD-8CD9-AA6821975780}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{C477FE5F-6A6C-4DBB-A72C-C3A580A69D9F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -7106,7 +7106,7 @@ FROM            ventas</property>
                       refId="Package\FactVentas\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[DescuentoAplicado]"
                       cachedDataType="numeric"
                       cachedName="DescuentoAplicado"
-                      cachedPrecision="5"
+                      cachedPrecision="18"
                       cachedScale="2"
                       cachedSortKeyPosition="8"
                       lineageId="Package\FactVentas\Ordenar II.Outputs[Salida de ordenación].Columns[DescuentoAplicado]" />
@@ -7118,8 +7118,10 @@ FROM            ventas</property>
                       lineageId="Package\FactVentas\Ordenar II.Outputs[Salida de ordenación].Columns[TotalVenta]" />
                     <inputColumn
                       refId="Package\FactVentas\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[CostoTotal]"
-                      cachedDataType="i4"
+                      cachedDataType="numeric"
                       cachedName="CostoTotal"
+                      cachedPrecision="18"
+                      cachedScale="2"
                       cachedSortKeyPosition="10"
                       lineageId="Package\FactVentas\Ordenar II.Outputs[Salida de ordenación].Columns[CostoTotal]" />
                   </inputColumns>
@@ -7363,7 +7365,7 @@ FROM            ventas</property>
                       dataType="numeric"
                       lineageId="Package\FactVentas\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[DescuentoAplicadoDM]"
                       name="DescuentoAplicadoDM"
-                      precision="5"
+                      precision="18"
                       scale="2">
                       <properties>
                         <property
@@ -7388,9 +7390,11 @@ FROM            ventas</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\FactVentas\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CostoTotalDM]"
-                      dataType="i4"
+                      dataType="numeric"
                       lineageId="Package\FactVentas\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[CostoTotalDM]"
-                      name="CostoTotalDM">
+                      name="CostoTotalDM"
+                      precision="18"
+                      scale="2">
                       <properties>
                         <property
                           containsID="true"
@@ -7553,7 +7557,7 @@ FROM            ventas</property>
                       refId="Package\FactVentas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[DescuentoAplicado]"
                       dataType="numeric"
                       name="DescuentoAplicado"
-                      precision="5"
+                      precision="18"
                       scale="2" />
                     <externalMetadataColumn
                       refId="Package\FactVentas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[TotalVenta]"
@@ -7561,8 +7565,10 @@ FROM            ventas</property>
                       name="TotalVenta" />
                     <externalMetadataColumn
                       refId="Package\FactVentas\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[CostoTotal]"
-                      dataType="i4"
-                      name="CostoTotal" />
+                      dataType="numeric"
+                      name="CostoTotal"
+                      precision="18"
+                      scale="2" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -8165,7 +8171,7 @@ FROM            ventas</property>
                       refId="Package\FactVentas\Ordenar II.Inputs[Entrada de ordenación].Columns[DescuentoAplicado]"
                       cachedDataType="numeric"
                       cachedName="DescuentoAplicado"
-                      cachedPrecision="5"
+                      cachedPrecision="18"
                       cachedScale="2"
                       lineageId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].Columns[DescuentoAplicado]">
                       <properties>
@@ -8197,8 +8203,10 @@ FROM            ventas</property>
                     </inputColumn>
                     <inputColumn
                       refId="Package\FactVentas\Ordenar II.Inputs[Entrada de ordenación].Columns[CostoTotal]"
-                      cachedDataType="i4"
+                      cachedDataType="numeric"
                       cachedName="CostoTotal"
+                      cachedPrecision="18"
+                      cachedScale="2"
                       lineageId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].Columns[CostoTotal]">
                       <properties>
                         <property
@@ -8324,7 +8332,7 @@ FROM            ventas</property>
                       dataType="numeric"
                       lineageId="Package\FactVentas\Ordenar II.Outputs[Salida de ordenación].Columns[DescuentoAplicado]"
                       name="DescuentoAplicado"
-                      precision="5"
+                      precision="18"
                       scale="2"
                       sortKeyPosition="8">
                       <properties>
@@ -8351,9 +8359,11 @@ FROM            ventas</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\FactVentas\Ordenar II.Outputs[Salida de ordenación].Columns[CostoTotal]"
-                      dataType="i4"
+                      dataType="numeric"
                       lineageId="Package\FactVentas\Ordenar II.Outputs[Salida de ordenación].Columns[CostoTotal]"
                       name="CostoTotal"
+                      precision="18"
+                      scale="2"
                       sortKeyPosition="10">
                       <properties>
                         <property
@@ -8490,7 +8500,7 @@ FROM            ventas</property>
                       externalMetadataColumnId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].ExternalColumns[DescuentoAplicado]"
                       lineageId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].Columns[DescuentoAplicado]"
                       name="DescuentoAplicado"
-                      precision="5"
+                      precision="18"
                       scale="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
@@ -8504,12 +8514,14 @@ FROM            ventas</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].Columns[CostoTotal]"
-                      dataType="i4"
+                      dataType="numeric"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].ExternalColumns[CostoTotal]"
                       lineageId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].Columns[CostoTotal]"
                       name="CostoTotal"
+                      precision="18"
+                      scale="2"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -8546,7 +8558,7 @@ FROM            ventas</property>
                       refId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].ExternalColumns[DescuentoAplicado]"
                       dataType="numeric"
                       name="DescuentoAplicado"
-                      precision="5"
+                      precision="18"
                       scale="2" />
                     <externalMetadataColumn
                       refId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].ExternalColumns[TotalVenta]"
@@ -8554,8 +8566,10 @@ FROM            ventas</property>
                       name="TotalVenta" />
                     <externalMetadataColumn
                       refId="Package\FactVentas\Origen FactVenta.Outputs[Salida de origen de ADO NET].ExternalColumns[CostoTotal]"
-                      dataType="i4"
-                      name="CostoTotal" />
+                      dataType="numeric"
+                      name="CostoTotal"
+                      precision="18"
+                      scale="2" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -8603,7 +8617,7 @@ FROM            ventas</property>
                       dataType="numeric"
                       lineageId="Package\FactVentas\Origen FactVenta.Outputs[Salida de error de origen de ADO NET].Columns[DescuentoAplicado]"
                       name="DescuentoAplicado"
-                      precision="5"
+                      precision="18"
                       scale="2" />
                     <outputColumn
                       refId="Package\FactVentas\Origen FactVenta.Outputs[Salida de error de origen de ADO NET].Columns[TotalVenta]"
@@ -8612,9 +8626,11 @@ FROM            ventas</property>
                       name="TotalVenta" />
                     <outputColumn
                       refId="Package\FactVentas\Origen FactVenta.Outputs[Salida de error de origen de ADO NET].Columns[CostoTotal]"
-                      dataType="i4"
+                      dataType="numeric"
                       lineageId="Package\FactVentas\Origen FactVenta.Outputs[Salida de error de origen de ADO NET].Columns[CostoTotal]"
-                      name="CostoTotal" />
+                      name="CostoTotal"
+                      precision="18"
+                      scale="2" />
                     <outputColumn
                       refId="Package\FactVentas\Origen FactVenta.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
                       dataType="i4"
@@ -9000,49 +9016,49 @@ FROM     detalle_ventas INNER JOIN
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="130,42"
+          Size="129.6,41.6"
           Id="Package\DimCliente"
-          TopLeft="101.428570005358,68.1176471446212" />
+          TopLeft="54.9999977861127,42.3088232532504" />
         <NodeLayout
-          Size="143,42"
+          Size="143.2,41.6"
           Id="Package\DimEmpleado"
-          TopLeft="517.167355255622,232.142860398573" />
+          TopLeft="456.453068507378,198.686977576426" />
         <NodeLayout
-          Size="139,42"
+          Size="139.2,41.6"
           Id="Package\DimProducto"
-          TopLeft="634,309" />
+          TopLeft="602.749999467816,247.823528553788" />
         <NodeLayout
-          Size="137,42"
+          Size="136.8,41.6"
           Id="Package\DimSucursal"
-          TopLeft="383.914292197812,177.736136912805" />
+          TopLeft="324.092862607631,147.147901189699" />
         <NodeLayout
-          Size="133,42"
+          Size="132.8,41.6"
           Id="Package\DimTiempo"
-          TopLeft="238.28571086757,125.235295018523" />
+          TopLeft="192.749995806387,94.6470592954169" />
         <NodeLayout
-          Size="131,42"
+          Size="131.2,41.6"
           Id="Package\FactVentas"
-          TopLeft="786,396" />
+          TopLeft="752.964285151691,310.926469395111" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="231.028570005358,88.9176471446212">
+          TopLeft="184.599997786113,63.1088232532504">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="73.6571408622119,36.3176478739016"
+              EndConnector="74.5499980202745,31.5382360421665"
               Start="0,0"
-              End="73.6571408622119,28.8176478739016">
+              End="74.5499980202745,24.0382360421665">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="69.6571408622119,0" />
+                    End="70.5499980202745,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="69.6571408622119,0"
-                    Point2="73.6571408622119,0"
-                    Point3="73.6571408622119,4" />
+                    Point1="70.5499980202745,0"
+                    Point2="74.5499980202745,0"
+                    Point3="74.5499980202745,4" />
                   <mssgle:LineSegment
-                    End="73.6571408622119,28.8176478739016" />
+                    End="74.5499980202745,24.0382360421665" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9053,24 +9069,24 @@ FROM     detalle_ventas INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="371.08571086757,146.035295018523">
+          TopLeft="325.549995806387,115.447059295417">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="81.2285813302411,31.7008418942817"
+              EndConnector="66.9428668012434,31.700841894282"
               Start="0,0"
-              End="81.2285813302411,24.2008418942817">
+              End="66.9428668012434,24.200841894282">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="77.2285813302411,0" />
+                    End="62.9428668012434,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="77.2285813302411,0"
-                    Point2="81.2285813302411,0"
-                    Point3="81.2285813302411,4" />
+                    Point1="62.9428668012434,0"
+                    Point2="66.9428668012434,0"
+                    Point3="66.9428668012434,4" />
                   <mssgle:LineSegment
-                    End="81.2285813302411,24.2008418942817" />
+                    End="66.9428668012434,24.200841894282" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9081,24 +9097,24 @@ FROM     detalle_ventas INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="520.714292197812,198.536136912805">
+          TopLeft="460.892862607631,167.947901189699">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="68.0530630578105,33.6067234857685"
+              EndConnector="67.1602058997476,30.7390763867268"
               Start="0,0"
-              End="68.0530630578105,26.1067234857685">
+              End="67.1602058997476,23.2390763867268">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="64.0530630578105,0" />
+                    End="63.1602058997476,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="64.0530630578105,0"
-                    Point2="68.0530630578105,0"
-                    Point3="68.0530630578105,4" />
+                    Point1="63.1602058997476,0"
+                    Point2="67.1602058997476,0"
+                    Point3="67.1602058997476,4" />
                   <mssgle:LineSegment
-                    End="68.0530630578105,26.1067234857685" />
+                    End="67.1602058997476,23.2390763867268" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9109,30 +9125,24 @@ FROM     detalle_ventas INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="588.667355255622,274.142860398573">
+          TopLeft="599.653068507378,219.486977576426">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="114.832644744378,34.857139601427"
+              EndConnector="72.6969309604375,28.3365509773621"
               Start="0,0"
-              End="114.832644744378,27.357139601427">
+              End="72.6969309604375,20.8365509773621">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.4285698007135" />
+                    End="68.6969309604375,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.4285698007135"
-                    Point2="0,17.4285698007135"
-                    Point3="4,17.4285698007135" />
+                    Point1="68.6969309604375,0"
+                    Point2="72.6969309604375,0"
+                    Point3="72.6969309604375,4" />
                   <mssgle:LineSegment
-                    End="110.832644744378,17.4285698007135" />
-                  <mssgle:CubicBezierSegment
-                    Point1="110.832644744378,17.4285698007135"
-                    Point2="114.832644744378,17.4285698007135"
-                    Point3="114.832644744378,21.4285698007135" />
-                  <mssgle:LineSegment
-                    End="114.832644744378,27.357139601427" />
+                    End="72.6969309604375,20.8365509773621" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9143,30 +9153,24 @@ FROM     detalle_ventas INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="703.5,351">
+          TopLeft="741.949999467816,268.623528553788">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="148,45"
+              EndConnector="76.614285683875,42.3029408413236"
               Start="0,0"
-              End="148,37.5">
+              End="76.614285683875,34.8029408413236">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.5" />
+                    End="72.614285683875,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,18.5"
-                    Point2="0,22.5"
-                    Point3="4,22.5" />
+                    Point1="72.614285683875,0"
+                    Point2="76.614285683875,0"
+                    Point3="76.614285683875,4" />
                   <mssgle:LineSegment
-                    End="144,22.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="144,22.5"
-                    Point2="148,22.5"
-                    Point3="148,26.5" />
-                  <mssgle:LineSegment
-                    End="148,37.5" />
+                    End="76.614285683875,34.8029408413236" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9326,7 +9330,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9348,7 +9354,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9370,7 +9378,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9404,7 +9414,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9438,7 +9450,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9460,7 +9474,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9482,7 +9498,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -9576,7 +9594,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9598,7 +9618,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9704,7 +9726,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9726,7 +9750,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9748,7 +9774,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9782,7 +9810,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9816,7 +9846,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -9902,7 +9934,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9924,7 +9958,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9958,7 +9994,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9992,7 +10030,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10014,7 +10054,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10172,7 +10214,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10266,7 +10310,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10300,7 +10346,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10334,7 +10382,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10356,7 +10406,9 @@ FROM     detalle_ventas INNER JOIN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10700,69 +10752,75 @@ FROM     detalle_ventas INNER JOIN
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="160,42"
-          Id="Package\FactVentas\Origen FactVenta"
-          TopLeft="641,21" />
+          Size="171.2,41.6"
+          Id="Package\FactVentas\División condicional"
+          TopLeft="195.14285215553,347.705882138447" />
         <NodeLayout
-          Size="129,42"
+          Size="128.8,41.6"
           Id="Package\FactVentas\Ordenar II"
-          TopLeft="655,120" />
+          TopLeft="309.081626762107,172.436975525325" />
         <NodeLayout
-          Size="164,42"
-          Id="Package\FactVentas\Columna derivada"
-          TopLeft="335,93" />
+          Size="124.8,41.6"
+          Id="Package\FactVentas\Ordenar I"
+          TopLeft="99.8367302973831,171.168067089002" />
         <NodeLayout
-          Size="154,42"
+          Size="153.6,41.6"
           Id="Package\FactVentas\Origen VentaDB"
-          TopLeft="351,20" />
+          TopLeft="82.6326484909556,23.2773109703328" />
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\FactVentas\Origen FactVenta"
+          TopLeft="292.020402220178,26.4621849505547" />
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package\FactVentas\Combinación de mezcla"
+          TopLeft="189.285709420029,270.722689029667" />
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\FactVentas\Columna derivada"
+          TopLeft="74.7959139360977,98.4621849505547" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\FactVentas\Destino de ADO NET"
+          TopLeft="198.204076697458,431.193276514231" />
         <EdgeLayout
-          Id="Package\FactVentas.Paths[Salida de origen de ADO NET]"
-          TopLeft="720.25,63">
+          Id="Package\FactVentas.Paths[Nuevo Registro]"
+          TopLeft="283.473464426494,389.305882138447">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,57"
+              EndConnector="0,41.8873943757844"
               Start="0,0"
-              End="0,49.5">
+              End="0,34.3873943757844">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,49.5" />
+                    End="0,34.3873943757844" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-34.07703125,11.5013143753922,68.1540625,11.384765625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FactVentas.Paths[Salida de origen de ADO NET1]"
-          TopLeft="428,62">
+          TopLeft="158.114281213527,64.8773109703328">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-11,31"
+              EndConnector="0,33.5848739802219"
               Start="0,0"
-              End="-11,23.5">
+              End="0,26.0848739802219">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.5"
-                    Point2="0,15.5"
-                    Point3="-4,15.5" />
-                  <mssgle:LineSegment
-                    End="-7,15.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-7,15.5"
-                    Point2="-11,15.5"
-                    Point3="-11,19.5" />
-                  <mssgle:LineSegment
-                    End="-11,23.5" />
+                    End="0,26.0848739802219" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10771,62 +10829,20 @@ FROM     detalle_ventas INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="125,42"
-          Id="Package\FactVentas\Ordenar I"
-          TopLeft="358,181" />
         <EdgeLayout
-          Id="Package\FactVentas.Paths[Salida de columna derivada]"
-          TopLeft="418.75,135">
+          Id="Package\FactVentas.Paths[Salida de origen de ADO NET]"
+          TopLeft="372.751014491142,68.0621849505547">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,46"
+              EndConnector="0,104.37479057477"
               Start="0,0"
-              End="0,38.5">
+              End="0,96.8747905747701">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="190,42"
-          Id="Package\FactVentas\Combinación de mezcla"
-          TopLeft="475,274" />
-        <EdgeLayout
-          Id="Package\FactVentas.Paths[Salida de ordenación]"
-          TopLeft="420.5,223">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="119.166666666667,51"
-              Start="0,0"
-              End="119.166666666667,43.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.3444676409186" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.3444676409186"
-                    Point2="0,30.3444676409186"
-                    Point3="4,30.3444676409186" />
-                  <mssgle:LineSegment
-                    End="115.166666666667,30.3444676409186" />
-                  <mssgle:CubicBezierSegment
-                    Point1="115.166666666667,30.3444676409186"
-                    Point2="119.166666666667,30.3444676409186"
-                    Point3="119.166666666667,34.3444676409186" />
-                  <mssgle:LineSegment
-                    End="119.166666666667,43.5" />
+                    End="0,96.8747905747701" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10837,30 +10853,30 @@ FROM     detalle_ventas INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FactVentas.Paths[Salida de ordenación1]"
-          TopLeft="719.5,162">
+          TopLeft="373.481626762107,214.036975525325">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-119.166666666667,112"
+              EndConnector="-58.5959173420777,56.6857135043422"
               Start="0,0"
-              End="-119.166666666667,104.5">
+              End="-58.5959173420777,49.1857135043422">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,62.6388308977036" />
+                    End="0,29.7279995350836" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,62.6388308977036"
-                    Point2="0,66.6388308977036"
-                    Point3="-4,66.6388308977036" />
+                    Point1="0,29.7279995350836"
+                    Point2="0,33.7279995350836"
+                    Point3="-4,33.7279995350836" />
                   <mssgle:LineSegment
-                    End="-115.166666666667,66.6388308977036" />
+                    End="-54.5959173420777,33.7279995350836" />
                   <mssgle:CubicBezierSegment
-                    Point1="-115.166666666667,66.6388308977036"
-                    Point2="-119.166666666667,66.6388308977036"
-                    Point3="-119.166666666667,70.6388308977036" />
+                    Point1="-54.5959173420777,33.7279995350836"
+                    Point2="-58.5959173420777,33.7279995350836"
+                    Point3="-58.5959173420777,37.7279995350836" />
                   <mssgle:LineSegment
-                    End="-119.166666666667,104.5" />
+                    End="-58.5959173420777,49.1857135043422" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10869,24 +10885,54 @@ FROM     detalle_ventas INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\FactVentas\División condicional"
-          TopLeft="488,363" />
+        <EdgeLayout
+          Id="Package\FactVentas.Paths[Salida de ordenación]"
+          TopLeft="162.236730297383,212.768067089002">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.8489791226457,57.9546219406653"
+              Start="0,0"
+              End="91.8489791226457,50.4546219406653">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.4830000546959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.4830000546959"
+                    Point2="0,34.4830000546959"
+                    Point3="4,34.4830000546959" />
+                  <mssgle:LineSegment
+                    End="87.8489791226457,34.4830000546959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.8489791226457,34.4830000546959"
+                    Point2="91.8489791226457,34.4830000546959"
+                    Point3="91.8489791226457,38.4830000546959" />
+                  <mssgle:LineSegment
+                    End="91.8489791226457,50.4546219406653" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\FactVentas.Paths[Salida de combinación de mezcla]"
-          TopLeft="571.75,316">
+          TopLeft="282.614280787779,312.322689029667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47"
+              EndConnector="0,35.3831931087798"
               Start="0,0"
-              End="0,39.5">
+              End="0,27.8831931087798">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.5" />
+                    End="0,27.8831931087798" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10895,39 +10941,33 @@ FROM     detalle_ventas INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="176,42"
-          Id="Package\FactVentas\Destino de ADO NET"
-          TopLeft="488,488" />
         <EdgeLayout
-          Id="Package\FactVentas.Paths[Nuevo Registro]"
-          TopLeft="574.75,405">
+          Id="Package\FactVentas.Paths[Salida de columna derivada]"
+          TopLeft="159.51632211674,140.062184950555">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,83"
+              EndConnector="0,31.105882138447"
               Start="0,0"
-              End="0,75.5">
+              End="0,23.605882138447">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75.5" />
+                    End="0,23.605882138447" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-34.07703125,32.0576171875,68.1540625,11.384765625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\FactVentas\Origen FactVenta">
+    design-time-name="Package\FactVentas\Origen VentaDB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10935,7 +10975,7 @@ FROM     detalle_ventas INNER JOIN
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FactVentas\Origen VentaDB">
+    design-time-name="Package\FactVentas\Origen FactVenta">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
