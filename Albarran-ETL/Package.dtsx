@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{C9CDBF7B-C900-4A07-B117-97BFF119AA5F}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{114EAE27-E2B6-4C41-9B6E-A0EF1A759A76}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1226,7 +1226,1577 @@ FROM            DimCliente</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\DimTiempo\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[FechaDB]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FechaDB"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[DiaDB]"
+                      cachedDataType="i4"
+                      cachedName="DiaDB"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[MesDB]"
+                      cachedDataType="i4"
+                      cachedName="MesDB"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[AñoDB]"
+                      cachedDataType="i4"
+                      cachedName="AñoDB"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[IdTiempoDM]"
+                      cachedDataType="i4"
+                      cachedName="IdTiempoDM"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[IdTiempoDM]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[FechaDM]"
+                      cachedDataType="dbDate"
+                      cachedName="FechaDM"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDM]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[DiaDM]"
+                      cachedDataType="i4"
+                      cachedName="DiaDM"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDM]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[MesDM]"
+                      cachedDataType="i4"
+                      cachedName="MesDM"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDM]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input].Columns[AñoDM]"
+                      cachedDataType="i4"
+                      cachedName="AñoDM"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDM]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\Conditional Split.Outputs[Nuevo Registro]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Nuevo Registro"
+                  synchronousInputId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[IdTiempoDM]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(IdTiempoDM)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimTiempo\Conditional Split.Outputs[Registro Modificado]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Registro Modificado"
+                  synchronousInputId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">(#{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDB]} != #{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDM]} || #{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDB]} != #{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDM]} || #{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDB]} != #{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDM]} || #{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDB]} != #{Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDM]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(FechaDB != FechaDM || DiaDB != DiaDM || MesDB != MesDM || [AñoDB] != [AñoDM])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimTiempo\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimTiempo\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimTiempo\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimTiempo"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimTiempo\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{68F3CFC2-4281-4BBE-B612-0C287FA5FAE0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.MuebleriaAlbarranBI1]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[venta_idDB]"
+                      cachedDataType="i4"
+                      cachedName="venta_idDB"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[IdTiempo]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[venta_idDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[FechaDB]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FechaDB"
+                      externalMetadataColumnId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Fecha]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[DiaDB]"
+                      cachedDataType="i4"
+                      cachedName="DiaDB"
+                      externalMetadataColumnId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Dia]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[MesDB]"
+                      cachedDataType="i4"
+                      cachedName="MesDB"
+                      externalMetadataColumnId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Mes]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[AñoDB]"
+                      cachedDataType="i4"
+                      cachedName="AñoDB"
+                      externalMetadataColumnId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Año]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDB]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[IdTiempo]"
+                      dataType="i4"
+                      name="IdTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Fecha]"
+                      dataType="dbTimeStamp"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Dia]"
+                      dataType="i4"
+                      name="Dia" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Mes]"
+                      dataType="i4"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Año]"
+                      dataType="i4"
+                      name="Año" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimTiempo\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\DetalleFecha"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DetalleFecha"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimTiempo\DetalleFecha.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\DetalleFecha.Inputs[Derived Column Input].Columns[fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DimTiempo\DetalleFecha.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">fecha</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Dia]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Dia]"
+                      name="Dia"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DAY](#{Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DAY(fecha)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Mes]"
+                      name="Mes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[MONTH](#{Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">MONTH(fecha)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Año]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Año]"
+                      name="Año"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(fecha)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DimTiempo\DetalleFecha.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[venta_id]"
+                      cachedDataType="i4"
+                      cachedName="venta_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[venta_id]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Fecha]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Dia]"
+                      cachedDataType="i4"
+                      cachedName="Dia"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Dia]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Mes]"
+                      cachedDataType="i4"
+                      cachedName="Mes"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Mes]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Año]"
+                      cachedDataType="i4"
+                      cachedName="Año"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Año]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[IdTiempo]"
+                      cachedDataType="i4"
+                      cachedName="IdTiempo"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[IdTiempo]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="Fecha"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Fecha]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Dia]"
+                      cachedDataType="i4"
+                      cachedName="Dia"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Dia]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Mes]"
+                      cachedDataType="i4"
+                      cachedName="Mes"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Mes]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Año]"
+                      cachedDataType="i4"
+                      cachedName="Año"
+                      cachedSortKeyPosition="5"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Año]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[venta_idDB]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[venta_idDB]"
+                      name="venta_idDB"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[venta_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDB]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDB]"
+                      name="FechaDB">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDB]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDB]"
+                      name="DiaDB">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Dia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDB]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDB]"
+                      name="MesDB">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDB]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDB]"
+                      name="AñoDB">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input].Columns[Año]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[IdTiempoDM]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[IdTiempoDM]"
+                      name="IdTiempoDM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[IdTiempo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDM]"
+                      dataType="dbDate"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDM]"
+                      name="FechaDM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDM]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDM]"
+                      name="DiaDM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Dia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDM]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDM]"
+                      name="MesDM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDM]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDM]"
+                      name="AñoDM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input].Columns[Año]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE DimTiempo SET Fecha = ?, Dia = ?, Mes = ?,  Año = ? WHERE IdTiempo = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimTiempo\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{563C3AFF-03AA-470C-89C9-E34F1D2A23EC}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.MuebleriaAlbarranBI]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].Columns[FechaDB]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FechaDB"
+                      externalMetadataColumnId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[FechaDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].Columns[DiaDB]"
+                      cachedDataType="i4"
+                      cachedName="DiaDB"
+                      externalMetadataColumnId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[DiaDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].Columns[MesDB]"
+                      cachedDataType="i4"
+                      cachedName="MesDB"
+                      externalMetadataColumnId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[MesDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].Columns[AñoDB]"
+                      cachedDataType="i4"
+                      cachedName="AñoDB"
+                      externalMetadataColumnId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[AñoDB]" />
+                    <inputColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].Columns[venta_idDB]"
+                      cachedDataType="i4"
+                      cachedName="venta_idDB"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output].Columns[venta_idDB]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbDate"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimTiempo\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\Ordenar I"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ordenar I"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DimTiempo\Ordenar I.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar I.Inputs[Sort Input].Columns[venta_id]"
+                      cachedDataType="i4"
+                      cachedName="venta_id"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[venta_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar I.Inputs[Sort Input].Columns[fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar I.Inputs[Sort Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar I.Inputs[Sort Input].Columns[Dia]"
+                      cachedDataType="i4"
+                      cachedName="Dia"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Dia]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar I.Inputs[Sort Input].Columns[Mes]"
+                      cachedDataType="i4"
+                      cachedName="Mes"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Mes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar I.Inputs[Sort Input].Columns[Año]"
+                      cachedDataType="i4"
+                      cachedName="Año"
+                      lineageId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Año]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\Ordenar I.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[venta_id]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[venta_id]"
+                      name="venta_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[venta_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[fecha]"
+                      name="fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Dia]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Dia]"
+                      name="Dia">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Dia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Mes]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Mes]"
+                      name="Mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Año]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar I.Outputs[Sort Output].Columns[Año]"
+                      name="Año">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output].Columns[Año]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\Ordenar II"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ordenar II"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DimTiempo\Ordenar II.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar II.Inputs[Sort Input].Columns[IdTiempo]"
+                      cachedDataType="i4"
+                      cachedName="IdTiempo"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[IdTiempo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar II.Inputs[Sort Input].Columns[Fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="Fecha"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar II.Inputs[Sort Input].Columns[Dia]"
+                      cachedDataType="i4"
+                      cachedName="Dia"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Dia]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar II.Inputs[Sort Input].Columns[Mes]"
+                      cachedDataType="i4"
+                      cachedName="Mes"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Mes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimTiempo\Ordenar II.Inputs[Sort Input].Columns[Año]"
+                      cachedDataType="i4"
+                      cachedName="Año"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Año]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\Ordenar II.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[IdTiempo]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[IdTiempo]"
+                      name="IdTiempo"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[IdTiempo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Fecha]"
+                      name="Fecha"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Dia]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Dia]"
+                      name="Dia"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Dia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Mes]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Mes]"
+                      name="Mes"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Año]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\Ordenar II.Outputs[Sort Output].Columns[Año]"
+                      name="Año"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Año]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\OrigenDimTiempo"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenDimTiempo"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        IdTiempo, Fecha, Dia, Mes, Año
+FROM            DimTiempo</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimTiempo\OrigenDimTiempo.Connections[IDbConnection]"
+                  connectionManagerID="{68F3CFC2-4281-4BBE-B612-0C287FA5FAE0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.MuebleriaAlbarranBI1]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[IdTiempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[IdTiempo]"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[IdTiempo]"
+                      name="IdTiempo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Fecha]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Fecha]"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Dia]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Dia]"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Dia]"
+                      name="Dia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Mes]"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Mes]"
+                      name="Mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Año]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Año]"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].Columns[Año]"
+                      name="Año"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[IdTiempo]"
+                      dataType="i4"
+                      name="IdTiempo" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Fecha]"
+                      dataType="dbDate"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Dia]"
+                      dataType="i4"
+                      name="Dia" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Mes]"
+                      dataType="i4"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET].ExternalColumns[Año]"
+                      dataType="i4"
+                      name="Año" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[IdTiempo]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[IdTiempo]"
+                      name="IdTiempo" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Fecha]"
+                      name="Fecha" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Dia]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Dia]"
+                      name="Dia" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Mes]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Mes]"
+                      name="Mes" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Año]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[Año]"
+                      name="Año" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimTiempo\OrigenVentaDB"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="OrigenVentaDB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        venta_id, fecha
+FROM            ventas</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimTiempo\OrigenVentaDB.Connections[IDbConnection]"
+                  connectionManagerID="{8742878F-6562-4B92-A5EB-10A0C4ECAF8E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.Albarran1]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[venta_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].ExternalColumns[venta_id]"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[venta_id]"
+                      name="venta_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha]"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].Columns[fecha]"
+                      name="fecha"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].ExternalColumns[venta_id]"
+                      dataType="i4"
+                      name="venta_id" />
+                    <externalMetadataColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha]"
+                      dataType="dbTimeStamp"
+                      name="fecha" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[venta_id]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[venta_id]"
+                      name="venta_id" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[fecha]"
+                      name="fecha" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimTiempo.Paths[Derived Column Output]"
+              endId="Package\DimTiempo\Ordenar I.Inputs[Sort Input]"
+              name="Derived Column Output"
+              startId="Package\DimTiempo\DetalleFecha.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DimTiempo.Paths[Merge Join Output]"
+              endId="Package\DimTiempo\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\DimTiempo\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\DimTiempo.Paths[Nuevo Registro]"
+              endId="Package\DimTiempo\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Nuevo Registro"
+              startId="Package\DimTiempo\Conditional Split.Outputs[Nuevo Registro]" />
+            <path
+              refId="Package\DimTiempo.Paths[Registro Modificado]"
+              endId="Package\DimTiempo\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Registro Modificado"
+              startId="Package\DimTiempo\Conditional Split.Outputs[Registro Modificado]" />
+            <path
+              refId="Package\DimTiempo.Paths[Salida de origen de ADO NET]"
+              endId="Package\DimTiempo\DetalleFecha.Inputs[Derived Column Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\DimTiempo\OrigenVentaDB.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\DimTiempo.Paths[Salida de origen de ADO NET1]"
+              endId="Package\DimTiempo\Ordenar II.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\DimTiempo\OrigenDimTiempo.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\DimTiempo.Paths[Sort Output]"
+              endId="Package\DimTiempo\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\DimTiempo\Ordenar I.Outputs[Sort Output]" />
+            <path
+              refId="Package\DimTiempo.Paths[Sort Output1]"
+              endId="Package\DimTiempo\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\DimTiempo\Ordenar II.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -1291,129 +2861,81 @@ FROM            DimCliente</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="156,42"
-          Id="Package\DimCliente\OrigenClienteDB"
-          TopLeft="182,50" />
-        <NodeLayout
           Size="138,42"
           Id="Package\DimCliente\Nombre_Full"
           TopLeft="187,140" />
-        <EdgeLayout
-          Id="Package\DimCliente.Paths[Salida de origen de ADO NET]"
-          TopLeft="258,92">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="156,42"
-          Id="Package\DimCliente\Data Conversion"
-          TopLeft="185,236" />
-        <EdgeLayout
-          Id="Package\DimCliente.Paths[Derived Column Output]"
-          TopLeft="259.5,182">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,54"
-              Start="0,0"
-              End="0,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="125,42"
-          Id="Package\DimCliente\Ordenar I"
-          TopLeft="196,328" />
-        <EdgeLayout
-          Id="Package\DimCliente.Paths[Data Conversion Output]"
-          TopLeft="260.75,278">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,50"
-              Start="0,0"
-              End="0,42.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="161,42"
-          Id="Package\DimCliente\OrigenDimCliente"
-          TopLeft="453,49" />
-        <NodeLayout
-          Size="125,42"
-          Id="Package\DimCliente\Ordena II"
-          TopLeft="467,139" />
-        <EdgeLayout
-          Id="Package\DimCliente.Paths[Salida de origen de ADO NET1]"
-          TopLeft="531.5,91">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\DimCliente\Conditional Split"
-          TopLeft="352,509" />
         <NodeLayout
           Size="168,42"
           Id="Package\DimCliente\Destino DimCliente"
           TopLeft="233.75,641.25" />
         <NodeLayout
+          Size="130,42"
+          Id="Package\DimCliente\Merge Join"
+          TopLeft="351.25,402.5" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\DimCliente\OrigenDimCliente"
+          TopLeft="453,49" />
+        <NodeLayout
           Size="166,42"
           Id="Package\DimCliente\OLE DB Command"
           TopLeft="463.75,643.75" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\DimCliente\Ordena II"
+          TopLeft="467,139" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\DimCliente\Ordenar I"
+          TopLeft="196,328" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimCliente\OrigenClienteDB"
+          TopLeft="182,50" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimCliente\Data Conversion"
+          TopLeft="185,236" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\DimCliente\Conditional Split"
+          TopLeft="352,509" />
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Registro Modificado]"
+          TopLeft="454,551">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.7500000000001,92.75"
+              Start="0,0"
+              End="92.7500000000001,85.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.6685823754789" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.6685823754789"
+                    Point2="0,37.6685823754789"
+                    Point3="4,37.6685823754789" />
+                  <mssgle:LineSegment
+                    End="88.7500000000001,37.6685823754789" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.7500000000001,37.6685823754789"
+                    Point2="92.7500000000001,37.6685823754789"
+                    Point3="92.7500000000001,41.6685823754789" />
+                  <mssgle:LineSegment
+                    End="92.7500000000001,85.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.63296875000005,42.6685823754789,87.4840625,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DimCliente.Paths[Nuevo Registro]"
           TopLeft="429.5,551">
@@ -1451,71 +2973,75 @@ FROM            DimCliente</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DimCliente.Paths[Registro Modificado]"
-          TopLeft="454,551">
+          Id="Package\DimCliente.Paths[Merge Join Output]"
+          TopLeft="416.25,444.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="92.7500000000001,92.75"
+              EndConnector="13.25,64.5"
               Start="0,0"
-              End="92.7500000000001,85.25">
+              End="13.25,57">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.6685823754789" />
+                    End="0,28.25" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,33.6685823754789"
-                    Point2="0,37.6685823754789"
-                    Point3="4,37.6685823754789" />
+                    Point1="0,28.25"
+                    Point2="0,32.25"
+                    Point3="4,32.25" />
                   <mssgle:LineSegment
-                    End="88.7500000000001,37.6685823754789" />
+                    End="9.25,32.25" />
                   <mssgle:CubicBezierSegment
-                    Point1="88.7500000000001,37.6685823754789"
-                    Point2="92.7500000000001,37.6685823754789"
-                    Point3="92.7500000000001,41.6685823754789" />
+                    Point1="9.25,32.25"
+                    Point2="13.25,32.25"
+                    Point3="13.25,36.25" />
                   <mssgle:LineSegment
-                    End="92.7500000000001,85.25" />
+                    End="13.25,57" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="2.63296875000005,42.6685823754789,87.4840625,11.7119140625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\DimCliente\Merge Join"
-          TopLeft="351.25,402.5" />
         <EdgeLayout
-          Id="Package\DimCliente.Paths[Sort Output]"
-          TopLeft="258.5,370">
+          Id="Package\DimCliente.Paths[Derived Column Output]"
+          TopLeft="259.5,182">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="157.75,32.5"
+              EndConnector="0,54"
               Start="0,0"
-              End="157.75,25">
+              End="0,46.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.25"
-                    Point2="0,16.25"
-                    Point3="4,16.25" />
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Data Conversion Output]"
+          TopLeft="260.75,278">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="153.75,16.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="153.75,16.25"
-                    Point2="157.75,16.25"
-                    Point3="157.75,20.25" />
-                  <mssgle:LineSegment
-                    End="157.75,25" />
+                    End="0,42.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1559,31 +3085,75 @@ FROM            DimCliente</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DimCliente.Paths[Merge Join Output]"
-          TopLeft="416.25,444.5">
+          Id="Package\DimCliente.Paths[Sort Output]"
+          TopLeft="258.5,370">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="13.25,64.5"
+              EndConnector="157.75,32.5"
               Start="0,0"
-              End="13.25,57">
+              End="157.75,25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.25" />
+                    End="0,12.25" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.25"
-                    Point2="0,32.25"
-                    Point3="4,32.25" />
+                    Point1="0,12.25"
+                    Point2="0,16.25"
+                    Point3="4,16.25" />
                   <mssgle:LineSegment
-                    End="9.25,32.25" />
+                    End="153.75,16.25" />
                   <mssgle:CubicBezierSegment
-                    Point1="9.25,32.25"
-                    Point2="13.25,32.25"
-                    Point3="13.25,36.25" />
+                    Point1="153.75,16.25"
+                    Point2="157.75,16.25"
+                    Point3="157.75,20.25" />
                   <mssgle:LineSegment
-                    End="13.25,57" />
+                    End="157.75,25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Salida de origen de ADO NET1]"
+          TopLeft="531.5,91">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimCliente.Paths[Salida de origen de ADO NET]"
+          TopLeft="258,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1596,7 +3166,7 @@ FROM            DimCliente</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DimCliente\OrigenClienteDB">
+    design-time-name="Package\DimCliente\Destino DimCliente">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1612,7 +3182,303 @@ FROM            DimCliente</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DimCliente\Destino DimCliente">
+    design-time-name="Package\DimCliente\OrigenClienteDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DimTiempo">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\DimTiempo\OrigenVentaDB"
+          TopLeft="179,38" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\DimTiempo\OrigenDimTiempo"
+          TopLeft="449,36" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\DimTiempo\Destino de ADO NET"
+          TopLeft="196,545" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\DimTiempo\OLE DB Command"
+          TopLeft="466,542" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\DimTiempo\DetalleFecha"
+          TopLeft="185,149" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\DimTiempo\Ordenar I"
+          TopLeft="196,257" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\DimTiempo\Ordenar II"
+          TopLeft="468,178" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\DimTiempo\Merge Join"
+          TopLeft="345,344" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\DimTiempo\Conditional Split"
+          TopLeft="332,444" />
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Salida de origen de ADO NET]"
+          TopLeft="254.5,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Derived Column Output]"
+          TopLeft="256.5,191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Salida de origen de ADO NET1]"
+          TopLeft="531.75,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,100"
+              Start="0,0"
+              End="0,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Sort Output]"
+          TopLeft="258.5,299">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151.5,45"
+              Start="0,0"
+              End="151.5,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="4,22.5" />
+                  <mssgle:LineSegment
+                    End="147.5,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="147.5,22.5"
+                    Point2="151.5,22.5"
+                    Point3="151.5,26.5" />
+                  <mssgle:LineSegment
+                    End="151.5,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Sort Output1]"
+          TopLeft="532.5,220">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-102.166666666667,124"
+              Start="0,0"
+              End="-102.166666666667,116.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.4954407294833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69.4954407294833"
+                    Point2="0,73.4954407294833"
+                    Point3="-4,73.4954407294833" />
+                  <mssgle:LineSegment
+                    End="-98.1666666666667,73.4954407294833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-98.1666666666667,73.4954407294833"
+                    Point2="-102.166666666667,73.4954407294833"
+                    Point3="-102.166666666667,77.4954407294833" />
+                  <mssgle:LineSegment
+                    End="-102.166666666667,116.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Merge Join Output]"
+          TopLeft="409.75,386">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Nuevo Registro]"
+          TopLeft="409.5,486">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-125.5,59"
+              Start="0,0"
+              End="-125.5,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="-4,29.5" />
+                  <mssgle:LineSegment
+                    End="-121.5,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-121.5,29.5"
+                    Point2="-125.5,29.5"
+                    Point3="-125.5,33.5" />
+                  <mssgle:LineSegment
+                    End="-125.5,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-96.82703125,34.5,68.1540625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimTiempo.Paths[Registro Modificado]"
+          TopLeft="434,486">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="115,56"
+              Start="0,0"
+              End="115,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.7432950191571" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.7432950191571"
+                    Point2="0,22.7432950191571"
+                    Point3="4,22.7432950191571" />
+                  <mssgle:LineSegment
+                    End="111,22.7432950191571" />
+                  <mssgle:CubicBezierSegment
+                    Point1="111,22.7432950191571"
+                    Point2="115,22.7432950191571"
+                    Point3="115,26.7432950191571" />
+                  <mssgle:LineSegment
+                    End="115,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="13.75796875,27.7432950191571,87.4840625,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimTiempo\OrigenVentaDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimTiempo\OrigenDimTiempo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimTiempo\Destino de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
